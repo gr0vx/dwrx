@@ -1,1 +1,1 @@
-<pre>system('uname -a && id && ls');</pre>
+<pre>system('uname -a');</pre>
